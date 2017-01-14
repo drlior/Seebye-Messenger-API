@@ -56,6 +56,7 @@ public class MessengerAPI
 	public static boolean isEnabled()
 	{
 		return App.getSPAPI().getBool(SPKey.ENABLED);
+
 	}
 
 	/**
