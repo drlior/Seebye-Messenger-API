@@ -5,24 +5,19 @@ package com.seebye.messengerapi.api.constants;
  */
 public enum Action
 {
-	requestSecret
-
-	, requestAccess
-
-	, requestSendMessage
-
-	, getContacts
-	, getMessageCount
-	, getLastMessages
-	, getContactImage
-	, syncContactImage
-	, syncAllContactImages
-
-	, informNewMessage
-	, informConversationOpened
-	,
-	informEmojiButtonPressed
-	, informAppComponentVisible
+	requestSecret,
+    requestAccess,
+    requestSendMessage,
+    getContacts,
+	getMessageCount,
+	getLastMessages,
+	getContactImage,
+	syncContactImage,
+	syncAllContactImages,
+	informNewMessage,
+	informConversationOpened,
+	informEmojiButtonPressed,
+	informAppComponentVisible,
 	;
 
 
