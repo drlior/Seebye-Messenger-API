@@ -6,12 +6,9 @@ buildscript {
         classpath 'com.android.tools.build:gradle:2.2.3'
     }
 }
-
 apply plugin: 'com.android.library'
-
 // see: https://github.com/shamanland/simple-string-obfuscator/blob/master/SimpleStringObfuscator.java
-def obfuscateString(str)
-{
+def obfuscateString(str) {
     Random r = new Random()
     byte[] b = str.getBytes()
     int c = b.length
@@ -46,14 +43,13 @@ def obfuscateString(str)
 
     return strRet
 }
-
 android {
-    compileSdkVersion 22
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
 
     defaultConfig {
-        minSdkVersion 18
-        targetSdkVersion 22
+        minSdkVersion 22
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
@@ -81,34 +77,31 @@ android {
      * -> don't make any typing mistakes
      */
     def manifestConstantsFile = file("manifestConstants.txt")
-    if (manifestConstantsFile.canRead())
-    {
+    if (manifestConstantsFile.canRead()) {
         def Properties props = new Properties()
 
         props.load(new FileInputStream(manifestConstantsFile))
 
         PERMISSION_MESSENGERAPI_VALUE = props['PERMISSION_MESSENGERAPI']
         ACTION_MESSENGERAPI_VALUE = obfuscateString(props['ACTION_MESSENGERAPI'])
-    }
-    else
-    {
+    } else {
         throw new GradleException("Could not read manifestConstants.txt!")
     }
 
     buildTypes {
 
         debug
-        {
-            buildConfigField "String", ACTION_MESSENGERAPI_KEY, ACTION_MESSENGERAPI_VALUE
-            buildConfigField "String", PERMISSION_MESSENGERAPI_KEY, obfuscateString(PERMISSION_MESSENGERAPI_VALUE)
+                {
+                    buildConfigField "String", ACTION_MESSENGERAPI_KEY, ACTION_MESSENGERAPI_VALUE
+                    buildConfigField "String", PERMISSION_MESSENGERAPI_KEY, obfuscateString(PERMISSION_MESSENGERAPI_VALUE)
 
-            buildConfigField "String", PKG_LUCKYPATCHER_KEY, PKG_LUCKYPATCHER_VALUE
-            buildConfigField "String", PKG_MESSENGERAPI_KEY, PKG_MESSENGERAPI_VALUE
-            buildConfigField "String", SIGNATURE_HASH_MAPI_KEY, SIGNATURE_HASH_MAPI_VALUE
+                    buildConfigField "String", PKG_LUCKYPATCHER_KEY, PKG_LUCKYPATCHER_VALUE
+                    buildConfigField "String", PKG_MESSENGERAPI_KEY, PKG_MESSENGERAPI_VALUE
+                    buildConfigField "String", SIGNATURE_HASH_MAPI_KEY, SIGNATURE_HASH_MAPI_VALUE
 
 
-            manifestPlaceholders = [PERMISSION_MESSENGERAPI: PERMISSION_MESSENGERAPI_VALUE]
-        }
+                    manifestPlaceholders = [PERMISSION_MESSENGERAPI: PERMISSION_MESSENGERAPI_VALUE]
+                }
 
         release {
             minifyEnabled false
@@ -125,9 +118,15 @@ android {
             manifestPlaceholders = [PERMISSION_MESSENGERAPI: PERMISSION_MESSENGERAPI_VALUE]
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
-
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.0.0'
+    compile 'com.android.support:appcompat-v7:25.1.0'
+}
+repositories {
+    jcenter()
 }
