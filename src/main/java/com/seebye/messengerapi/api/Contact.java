@@ -42,7 +42,12 @@ public class Contact
 			Parcel parcel = Parcel.obtain();
 			parcel.unmarshall(aBytes, 0, aBytes.length);
 
-			aContacts.add(new Contact(parcel));
+			Contact new_contact = new Contact(parcel);
+			if (new_contact.getType().toString().equals("GROUP") || true){
+				aContacts.add(new_contact);
+			}
+
+
 
 			parcel.recycle();
 		}

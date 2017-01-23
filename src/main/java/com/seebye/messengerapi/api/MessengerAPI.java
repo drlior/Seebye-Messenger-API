@@ -119,6 +119,8 @@ public class MessengerAPI
 				.add(Extra.ID_MESSENGER, strIDMessenger)
 				.add(Extra.MESSAGE_TYPE, type.ordinal())
 				.add(Extra.DATA, strData)
+                .add(Extra.EXTRA_HTML_TEXT, "ddddd")
+				//.add(Extra.DATA, "777")
 				.create();
 	}
 

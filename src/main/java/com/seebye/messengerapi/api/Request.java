@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.seebye.messengerapi.api.constants.Action;
 import com.seebye.messengerapi.api.constants.Extra;
@@ -247,8 +246,11 @@ public class Request
 			return new Intent(General.ACTION_MESSENGERAPI)
 					.setPackage(App.getInstance().isModule() ? General.PKG_MESSENGERAPI : m_strPackage)
 					.putExtras((Bundle)m_data.clone())
+                    //.putExtra(Intent.EXTRA_TEXT, "dddddd")
+                    //.putExtra(Intent.EXTRA_HTML_TEXT, "<a href='ddd'>dddd</a>")
 					// add sender package
-					.putExtra(Extra.PKG.getKey(), App.getInstance().getPackageName());
+                    //.putExtra(Intent.EXTRA_TEXT, "kkkk")
+                    .putExtra(Extra.PKG.getKey(), App.getInstance().getPackageName());
 		}
 
 		/**

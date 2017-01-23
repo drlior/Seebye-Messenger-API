@@ -34,7 +34,9 @@ public enum Extra
 	, MESSAGE				("msg")
 	, CONVERSATIONOPENED	("convopened")
 	, RECT					("rect")
-	, PKG2					("package2");
+	, PKG2					("package2")
+	, EXTRA_TEXT			("extra_text")
+    , EXTRA_HTML_TEXT       ("extra_html_text");
 
 	private String m_strKey;
 
